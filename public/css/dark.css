@@ -1,0 +1,44 @@
+/* Orbitly - Dark Mode Styles */
+[data-theme="dark"] {
+  --bg-app: #0F0F1A;
+  --bg-card: #181828;
+  --bg-surface: #181828;
+  --bg-surface-hover: #222238;
+  --bg-input: #202034;
+  --border-color: #2D2D45;
+
+  --text-main: #F3F4F6;
+  --text-muted: #9CA3AF;
+  --text-subtle: #6B7280;
+
+  --color-primary-light: rgba(124, 58, 237, 0.2);
+  --color-accent-light: rgba(236, 72, 153, 0.2);
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.6);
+
+  --danger-light: rgba(239, 68, 68, 0.2);
+  --success-light: rgba(16, 185, 129, 0.2);
+}
+
+[data-theme="dark"] .composer-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .post-card {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .post-card:hover {
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+[data-theme="dark"] .modal-overlay {
+  background: rgba(5, 5, 10, 0.75);
+}
+
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, #202034 25%, #2D2D45 50%, #202034 75%);
+  background-size: 200% 100%;
+}

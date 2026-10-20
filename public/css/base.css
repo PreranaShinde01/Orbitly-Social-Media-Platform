@@ -1,0 +1,200 @@
+/* Orbitly - Base Styles & Design Tokens */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Brand Palette */
+  --color-primary: #7C3AED;
+  --color-primary-hover: #6D28D9;
+  --color-primary-light: #EDE9FE;
+  --color-primary-glow: rgba(124, 58, 237, 0.25);
+
+  --color-accent: #EC4899;
+  --color-accent-hover: #DB2777;
+  --color-accent-light: #FCE7F3;
+
+  --gradient-brand: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+
+  /* Neutrals - Light Mode */
+  --bg-app: #F8F7FF;
+  --bg-card: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-hover: #F3F0FF;
+  --bg-input: #F3F4F6;
+  --border-color: #E5E7EB;
+  --border-focus: #7C3AED;
+
+  --text-main: #1F2937;
+  --text-muted: #6B7280;
+  --text-subtle: #9CA3AF;
+  --text-inverse: #FFFFFF;
+
+  --danger: #EF4444;
+  --danger-light: #FEE2E2;
+  --success: #10B981;
+  --success-light: #D1FAE5;
+
+  /* Typography & Layout */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(124, 58, 237, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px var(--color-primary-glow);
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Main App Shell Layout */
+.app-container {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 680px) 340px;
+  gap: 28px;
+  max-width: 1320px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 0 16px;
+}
+
+/* Left Sidebar Navigation */
+.sidebar-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 8px;
+  border-right: 1px solid var(--border-color);
+}
+
+/* Center Feed / Stream */
+.main-content {
+  padding: 24px 0 80px 0;
+  min-width: 0;
+}
+
+/* Right Discovery Sidebar */
+.sidebar-right {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 24px 8px;
+  border-left: 1px solid var(--border-color);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1100px) {
+  .app-container {
+    grid-template-columns: 80px minmax(0, 1fr) 300px;
+    gap: 16px;
+  }
+  .nav-label {
+    display: none;
+  }
+  .brand-text {
+    display: none;
+  }
+  .sidebar-left .btn-new-post-text {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .sidebar-right {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    display: block;
+    padding: 0 12px;
+  }
+  .sidebar-left {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    height: 64px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    border-right: none;
+    padding: 6px 12px;
+    z-index: 1000;
+  }
+  .sidebar-left .brand-link,
+  .sidebar-left .sidebar-footer,
+  .sidebar-left .btn-compose-sidebar {
+    display: none;
+  }
+  .sidebar-left .nav-menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+  }
+  .main-content {
+    padding: 16px 0 88px 0;
+  }
+}

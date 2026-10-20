@@ -1,0 +1,13 @@
+node_modules/
+uploads/*
+!uploads/.gitkeep
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.env
+.DS_Store
+Thumbs.db
+coverage/
+npm-debug.log*

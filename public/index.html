@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbitly - Keep your circle in orbit</title>
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/dark.css">
+</head>
+<body>
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Global Modal Container -->
+  <div id="modal-container"></div>
+
+  <!-- Main Responsive 3-Column Shell -->
+  <div class="app-container">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside class="sidebar-left">
+      <a href="/" class="brand-link" data-nav>
+        <img src="/img/logo.svg" alt="Orbitly Logo" class="brand-logo-img">
+        <span class="brand-text">Orbitly</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li class="nav-item" data-route="/">
+          <a href="/" data-nav>
+            <span class="nav-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span class="nav-label">Home</span>
+          </a>
+        </li>
+        <li class="nav-item" data-route="/explore">
+          <a href="/explore" data-nav>
+            <span class="nav-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            </span>
+            <span class="nav-label">Explore</span>
+          </a>
+        </li>
+        <li class="nav-item" data-route="/notifications">
+          <a href="/notifications" data-nav>
+            <span class="nav-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            </span>
+            <span class="nav-label">Notifications</span>
+            <span class="nav-badge" id="nav-unread-badge" style="display: none;">0</span>
+          </a>
+        </li>
+        <li class="nav-item" data-route="/profile" id="nav-profile-item">
+          <a href="/profile" data-nav>
+            <span class="nav-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <span class="nav-label">Profile</span>
+          </a>
+        </li>
+        <li class="nav-item" data-route="/settings" id="nav-settings-item">
+          <a href="/settings" data-nav>
+            <span class="nav-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </span>
+            <span class="nav-label">Settings</span>
+          </a>
+        </li>
+      </ul>
+
+      <div style="margin-top: 18px;" class="btn-compose-sidebar">
+        <button id="btn-open-compose" class="btn btn-primary" style="width: 100%; padding: 12px 20px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span class="btn-new-post-text">Post</span>
+        </button>
+      </div>
+
+      <!-- User footer / Theme toggle -->
+      <div class="sidebar-footer">
+        <button id="theme-toggle-btn" class="btn btn-outline" style="width: 100%;" title="Toggle theme">
+          <span id="theme-icon">🌙</span>
+          <span class="nav-label" id="theme-label">Dark Mode</span>
+        </button>
+
+        <div id="user-footer-card" class="user-menu-pill">
+          <img id="user-footer-avatar" src="/img/logo.svg" alt="Avatar" class="avatar-small">
+          <div style="flex: 1; min-width: 0;" class="nav-label">
+            <div id="user-footer-name" style="font-weight: 700; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">User</div>
+            <div id="user-footer-handle" style="font-size: 0.8rem; color: var(--text-muted);">@handle</div>
+          </div>
+          <button id="btn-logout" class="btn-ghost" title="Log out" style="padding: 6px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center Stream / Dynamic View Container -->
+    <main class="main-content" id="main-view">
+      <!-- Injected by router/views -->
+    </main>
+
+    <!-- Right Discovery Sidebar -->
+    <aside class="sidebar-right" id="sidebar-right">
+      <!-- Search Widget with Live Debounced Dropdown -->
+      <div class="search-widget">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="global-search-input" class="search-input" placeholder="Search people, tags or posts..." autocomplete="off">
+        </div>
+        <div id="search-suggestions" class="search-suggestions-dropdown"></div>
+      </div>
+
+      <!-- Suggested Users Card -->
+      <div class="sidebar-card" id="suggested-users-card">
+        <h3 class="sidebar-card-title">Who to follow</h3>
+        <div id="suggested-users-list">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Trending Hashtags Card -->
+      <div class="sidebar-card">
+        <h3 class="sidebar-card-title">Trending in Orbit</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="/tag/orbitly" class="hashtag-trending-item" data-nav style="display: block;">
+            <div style="font-size: 0.75rem; color: var(--text-subtle);">Trending in Community</div>
+            <div style="font-weight: 700; color: var(--text-main);">#orbitly</div>
+          </a>
+          <a href="/tag/space" class="hashtag-trending-item" data-nav style="display: block;">
+            <div style="font-size: 0.75rem; color: var(--text-subtle);">Trending in Science</div>
+            <div style="font-weight: 700; color: var(--text-main);">#space</div>
+          </a>
+          <a href="/tag/webdev" class="hashtag-trending-item" data-nav style="display: block;">
+            <div style="font-size: 0.75rem; color: var(--text-subtle);">Trending in Technology</div>
+            <div style="font-weight: 700; color: var(--text-main);">#webdev</div>
+          </a>
+          <a href="/tag/ai" class="hashtag-trending-item" data-nav style="display: block;">
+            <div style="font-size: 0.75rem; color: var(--text-subtle);">Trending in Tech</div>
+            <div style="font-weight: 700; color: var(--text-main);">#ai</div>
+          </a>
+          <a href="/tag/design" class="hashtag-trending-item" data-nav style="display: block;">
+            <div style="font-size: 0.75rem; color: var(--text-subtle);">Trending in Creative</div>
+            <div style="font-weight: 700; color: var(--text-main);">#design</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Subtle Footer -->
+      <div style="padding: 0 8px; font-size: 0.78rem; color: var(--text-subtle); line-height: 1.6;">
+        Orbitly &copy; 2026. Keep your circle in orbit. Built with Node.js &amp; SQLite.
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Client Application Scripts -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
